@@ -6,12 +6,12 @@ spring:
   application:
     name: HelloShoesBackEnd
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 5
-      password: nipun1234
-      jdbc-url: jdbc:mysql://location:3306/hello_Shoes?creatDatabaseIfNoteExist=true
-      username: root
+    password: nipun1234
+    url: jdbc:mysql://localhost:3306/helloShoes?createDatabaseIfNotExist=true
+    username: root
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     generate-ddl: true
