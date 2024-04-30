@@ -1,6 +1,8 @@
 package lk.ijse.gdse.helloshoesbackend.entity;
 
 import jakarta.persistence.*;
+import lk.ijse.gdse.helloshoesbackend.Enum.Gender;
+import lk.ijse.gdse.helloshoesbackend.Enum.Level;
 import lombok.Data;
 
 import java.util.Date;
@@ -18,7 +20,7 @@ public class CustomerEntity {
     private Gender gender;
 
     @Enumerated(EnumType.STRING)
-    private  Level level;
+    private Level level;
 
     @Temporal(TemporalType.DATE)
     private Date joinDate;

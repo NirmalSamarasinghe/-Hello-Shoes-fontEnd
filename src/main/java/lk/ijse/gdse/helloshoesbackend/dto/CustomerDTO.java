@@ -1,7 +1,7 @@
 package lk.ijse.gdse.helloshoesbackend.dto;
 import jakarta.validation.constraints.*;
-import lk.ijse.gdse.helloshoesbackend.entity.Gender;
-import lk.ijse.gdse.helloshoesbackend.entity.Level;
+import lk.ijse.gdse.helloshoesbackend.Enum.Gender;
+import lk.ijse.gdse.helloshoesbackend.Enum.Level;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
