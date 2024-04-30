@@ -38,7 +38,7 @@ public class CustomerServiceIMpL implements CustomerService {
         return conversionData.convertoCustomerDTO(customerServiceDao.findById(customerID));
     }
 
-  /*  @Override
+    @Override
     public boolean deleteCustomerByID(String customerID) {
         Optional<CustomerEntity> customer= customerServiceDao.findById(customerID);
         if(customer.isPresent()){
@@ -47,6 +47,6 @@ public class CustomerServiceIMpL implements CustomerService {
         }else{
             return false;
         }
-    }*/
+    }
 
 }
