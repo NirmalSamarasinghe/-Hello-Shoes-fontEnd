@@ -8,6 +8,7 @@ import lk.ijse.gdse.helloshoesbackend.util.ConversionData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -23,5 +24,10 @@ public class CustomerServiceIMpL implements CustomerService {
     public CustomerDTO saveCustomer(CustomerDTO customerDTO) {
         customerDTO.setCustomerID(UUID.randomUUID().toString());
         return conversionData.convertoCustomerDTO(java.util.Optional.of(customerServiceDao.save(conversionData.convertToCustomerEntity(Optional.of(customerDTO)))));
+    }
+
+    @Override
+    public List<CustomerDTO> getAllCustomer() {
+        return conversionData.convertCustomerDTOList(customerServiceDao.findAll());
     }
 }

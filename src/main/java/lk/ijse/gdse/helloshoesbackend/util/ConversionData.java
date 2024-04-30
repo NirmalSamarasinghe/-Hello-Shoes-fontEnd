@@ -20,7 +20,7 @@ public class ConversionData {
     public CustomerEntity convertToCustomerEntity(Optional<CustomerDTO> customerDTO){
         return modelMapper.map(customerDTO,CustomerEntity.class);
     }
-    public List<CustomerDTO>getCustomerDTOList(List<CustomerEntity> customerEntityList){
+    public List<CustomerDTO>convertCustomerDTOList(List<CustomerEntity> customerEntityList){
         return modelMapper.map(customerEntityList,List.class);
     }
     public List<CustomerEntity>getCustomerEntityList(List<CustomerDTO> customerDTOList){

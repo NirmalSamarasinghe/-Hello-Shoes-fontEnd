@@ -5,6 +5,7 @@ import lk.ijse.gdse.helloshoesbackend.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,5 +24,10 @@ public class Customer {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public CustomerDTO saveCustomer( @Validated @RequestBody CustomerDTO customerDTO) {
        return customerService.saveCustomer(customerDTO);
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getAllCustomer() {
+        return ResponseEntity.ok(customerService.getAllCustomer());
     }
 }
