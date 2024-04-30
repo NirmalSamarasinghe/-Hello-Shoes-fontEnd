@@ -23,7 +23,7 @@ public class CustomerServiceIMpL implements CustomerService {
 
     @Override
     public CustomerDTO saveCustomer(CustomerDTO customerDTO) {
-        customerDTO.setCustomerID(UUID.randomUUID().toString());
+       // customerDTO.setCustomerID(UUID.randomUUID().toString());
         return conversionData.convertoCustomerDTO(java.util.Optional.of(customerServiceDao.save(conversionData.convertToCustomerEntity(Optional.of(customerDTO)))));
     }
 
@@ -39,14 +39,32 @@ public class CustomerServiceIMpL implements CustomerService {
     }
 
     @Override
-    public boolean deleteCustomerByID(String customerID) {
-        Optional<CustomerEntity> customer= customerServiceDao.findById(customerID);
-        if(customer.isPresent()){
-            customerServiceDao.delete(customer.get());
-            return true;
-        }else{
-            return false;
+    public void deleteCustomerByID(String customerID) {
+        customerServiceDao.deleteById(customerID);
+    }
+
+    @Override
+    public void updateCustomer(String id, CustomerDTO customerDTO) {
+        Optional<CustomerEntity>customer=customerServiceDao.findById(id);
+        if(customer.isPresent()) {
+            customer.get().setCustomerId(customerDTO.getCustomerID());
+            customer.get().setCustomerName(customerDTO.getCustomerName());
+            customer.get().setGender(customerDTO.getGender());
+            customer.get().setJoinDate(customerDTO.getJoinDate());
+            customer.get().setLevel(customerDTO.getLevel());
+            customer.get().setTotalPoints(customerDTO.getTotalPoints());
+            customer.get().setDateOfBirth(customerDTO.getDateOfBirth());
+            customer.get().setAddress1(customerDTO.getAddress1());
+            customer.get().setAddress2(customerDTO.getAddress2());
+            customer.get().setAddress3(customerDTO.getAddress3());
+            customer.get().setAddress4(customerDTO.getAddress4());
+            customer.get().setAddress5(customerDTO.getAddress5());
+            customer.get().setContact(customerDTO.getContact());
+            customer.get().setEmail(customerDTO.getEmail());
+            customer.get().setPurchaseTimeDate(String.valueOf(customerDTO.getPurchaseTimeDate()));
+
         }
+
     }
 
 }

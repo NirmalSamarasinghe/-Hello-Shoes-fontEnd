@@ -12,5 +12,7 @@ public interface CustomerService {
 
     CustomerDTO getCustomerByID(String customerID);
 
-    boolean deleteCustomerByID(String customerID);
+    void deleteCustomerByID(String customerID);
+
+    void updateCustomer(String id,CustomerDTO customerDTO);
 }
