@@ -30,4 +30,12 @@ public class Customer {
     public ResponseEntity<?> getAllCustomer() {
         return ResponseEntity.ok(customerService.getAllCustomer());
     }
+    @GetMapping(value = "/{customerID}")
+    public ResponseEntity<?> getCustomerByID(@PathVariable String customerID) {
+        return ResponseEntity.ok(customerService.getCustomerByID(customerID));
+    }
+ /*   @DeleteMapping(value = "/{customerID}")
+    public ResponseEntity<?> deleteCustomerByID(@PathVariable String customerID) {
+        return ResponseEntity.ok(customerService.deleteCustomerByID(customerID));
+    }*/
 }
