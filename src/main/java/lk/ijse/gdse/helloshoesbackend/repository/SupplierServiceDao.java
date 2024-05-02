@@ -1,4 +1,9 @@
 package lk.ijse.gdse.helloshoesbackend.repository;
 
-public interface SupplierServiceDao {
+import lk.ijse.gdse.helloshoesbackend.entity.SupplierEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface SupplierServiceDao extends JpaRepository<SupplierEntity,String> {
 }

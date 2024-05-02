@@ -23,7 +23,6 @@ public class CustomerServiceIMpL implements CustomerService {
 
     @Override
     public CustomerDTO saveCustomer(CustomerDTO customerDTO) {
-       // customerDTO.setCustomerID(UUID.randomUUID().toString());
         return conversionData.convertoCustomerDTO(java.util.Optional.of(customerServiceDao.save(conversionData.convertToCustomerEntity(Optional.of(customerDTO)))));
     }
 
@@ -62,9 +61,6 @@ public class CustomerServiceIMpL implements CustomerService {
             customer.get().setContact(customerDTO.getContact());
             customer.get().setEmail(customerDTO.getEmail());
             customer.get().setPurchaseTimeDate(String.valueOf(customerDTO.getPurchaseTimeDate()));
-
         }
-
     }
-
 }
