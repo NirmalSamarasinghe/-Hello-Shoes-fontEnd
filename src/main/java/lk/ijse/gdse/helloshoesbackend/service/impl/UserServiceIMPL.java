@@ -14,11 +14,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 
 public class UserServiceIMPL implements UserService {
-    private final UserServiceDao userServiceDao;
+    private final UserServiceDao userDao;
     @Override
     public UserDetailsService userDetailsService() {
-        return username ->
-                (UserDetails) userServiceDao.findByEmail(username)
+        return new UserDetailsService() {
+            @Override
+            public UserDetails loadUserByUsername(String username) {
+                return userDao.findByEmail(username)
                         .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+            }
+        };
     }
 }

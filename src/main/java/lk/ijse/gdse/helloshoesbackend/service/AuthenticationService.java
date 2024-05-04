@@ -6,9 +6,9 @@ import lk.ijse.gdse.helloshoesbackend.req_and_rest.secure.JWTAuthResponse;
 
 public interface AuthenticationService {
 
-    JWTAuthResponse signUp(SignUp signUpReq);
+    JWTAuthResponse signup(SignUp request);
 
-    JWTAuthResponse singIn(SignIn singIn);
+    JWTAuthResponse signin(SignIn request);
 
     JWTAuthResponse refreshToken(String refreshToken);
 }

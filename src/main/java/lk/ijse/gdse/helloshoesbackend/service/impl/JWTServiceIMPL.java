@@ -23,12 +23,25 @@ import java.util.function.Function;
 @Service
 @RequiredArgsConstructor
 public class JWTServiceIMPL implements JWTService {
-    @Value("${token.key}")
-    private String jwtKey;
-
+    @Value("${token.signing.key}")
+    private String jwtSigningKey;
     @Override
-    public String extractUsername(String token) {
+    public String extractUserName(String token) {
         return extractClaim(token, Claims::getSubject);
+    }
+    private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
+    private Claims extractAllClaims(String token) {
+        return Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token)
+                .getBody();
+    }
+
+    private Key getSigningKey() {
+        byte[] keyBytes = Decoders.BASE64.decode(jwtSigningKey);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 
     @Override
@@ -36,53 +49,24 @@ public class JWTServiceIMPL implements JWTService {
         return generateToken(new HashMap<>(), userDetails);
     }
 
+    private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+        return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256).compact();
+    }
+
     @Override
-    public boolean istokenValid(String token, UserDetails userDetails) {
-        String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
+    public boolean isTokenValid(String token, UserDetails userDetails) {
+        final String userName = extractUserName(token);
+        return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
-    private String generateToken(Map<String,Object> extractClaims, UserDetails userDetails){
-        extractClaims.put("role",userDetails.getAuthorities());
-        Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + 1000*60*60*24);
-        Date refreshTokenExpire = new Date(now.getTime() + 1000*60*60*24);
-
-
-        String accessToken = Jwts.builder().setClaims(extractClaims)
-                .setSubject(userDetails.getUsername())
-                .setIssuedAt(now)
-                .setExpiration(expiryDate)
-                .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
-
-        String refreshToken = Jwts.builder().setClaims(extractClaims)
-                .setSubject(userDetails.getUsername())
-                .setIssuedAt(now)
-                .setExpiration(refreshTokenExpire)
-                .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
-
-
-        return accessToken + " : " +refreshToken;
-    }
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 
     private Date extractExpiration(String token) {
-        return extractClaim(token,Claims::getExpiration);
-    }
-
-    private <T> T extractClaim(String token, Function<Claims,T> claimsResole) {
-        final Claims claims = getAllClaims(token);
-        return claimsResole.apply(claims);
-    }
-
-    private Claims getAllClaims(String token) {
-        return Jwts.parser().setSigningKey(getSignKey()).parseClaimsJws(token).getBody();
-    }
-
-    public Key getSignKey(){
-        byte[] keyBytes = Decoders.BASE64.decode(jwtKey);
-        return Keys.hmacShaKeyFor(keyBytes);
+        return extractClaim(token, Claims::getExpiration);
     }
 }

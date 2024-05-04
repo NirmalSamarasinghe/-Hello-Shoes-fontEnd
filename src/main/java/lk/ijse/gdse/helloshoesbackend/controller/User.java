@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("api/v1/auth")
 @RequiredArgsConstructor
 public class User {
      private final UserService userService;
@@ -20,13 +20,13 @@ public class User {
 
      @PostMapping("/signUp")
     public ResponseEntity<JWTAuthResponse> signUp(@RequestBody SignUp signUpReq) {
-        return ResponseEntity.ok(authenticationservice.signUp(signUpReq));
+        return ResponseEntity.ok(authenticationservice.signup(signUpReq));
 
     }
 
     @PostMapping("/signIn")
     public ResponseEntity<JWTAuthResponse>singIn(@RequestBody SignIn singIn) {
-         return ResponseEntity.ok(authenticationservice.singIn(singIn));
+         return ResponseEntity.ok(authenticationservice.signin(singIn));
     }
     @GetMapping("/refresh")
     public ResponseEntity<JWTAuthResponse>refresh(
