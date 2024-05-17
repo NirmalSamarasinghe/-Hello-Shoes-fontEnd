@@ -3,7 +3,7 @@ package lk.ijse.gdse.helloshoesbackend.service.impl;
 import jakarta.transaction.Transactional;
 import lk.ijse.gdse.helloshoesbackend.dto.CustomerDTO;
 import lk.ijse.gdse.helloshoesbackend.entity.CustomerEntity;
-import lk.ijse.gdse.helloshoesbackend.repository.CustomerServiceDao;
+import lk.ijse.gdse.helloshoesbackend.dao.CustomerServiceDao;
 import lk.ijse.gdse.helloshoesbackend.service.CustomerService;
 import lk.ijse.gdse.helloshoesbackend.util.ConversionData;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Transactional
 @Service

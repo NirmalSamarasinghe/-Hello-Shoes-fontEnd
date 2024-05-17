@@ -1,10 +1,9 @@
 package lk.ijse.gdse.helloshoesbackend.service.impl;
 
 import jakarta.transaction.Transactional;
-import lk.ijse.gdse.helloshoesbackend.Enum.Role;
 import lk.ijse.gdse.helloshoesbackend.dto.UserDTO;
 import lk.ijse.gdse.helloshoesbackend.entity.UserEntity;
-import lk.ijse.gdse.helloshoesbackend.repository.UserServiceDao;
+import lk.ijse.gdse.helloshoesbackend.dao.UserServiceDao;
 import lk.ijse.gdse.helloshoesbackend.req_and_rest.response.SignIn;
 import lk.ijse.gdse.helloshoesbackend.req_and_rest.response.SignUp;
 import lk.ijse.gdse.helloshoesbackend.req_and_rest.secure.JWTAuthResponse;

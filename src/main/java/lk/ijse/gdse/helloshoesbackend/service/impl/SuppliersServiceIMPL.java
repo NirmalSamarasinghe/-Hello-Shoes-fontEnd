@@ -3,11 +3,10 @@ package lk.ijse.gdse.helloshoesbackend.service.impl;
 import jakarta.transaction.Transactional;
 import lk.ijse.gdse.helloshoesbackend.dto.SupplierDTO;
 import lk.ijse.gdse.helloshoesbackend.entity.SupplierEntity;
-import lk.ijse.gdse.helloshoesbackend.repository.SupplierServiceDao;
+import lk.ijse.gdse.helloshoesbackend.dao.SupplierServiceDao;
 import lk.ijse.gdse.helloshoesbackend.service.SupplierService;
 import lk.ijse.gdse.helloshoesbackend.util.ConversionData;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 

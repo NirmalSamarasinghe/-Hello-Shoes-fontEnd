@@ -1,15 +1,13 @@
 package lk.ijse.gdse.helloshoesbackend.service.impl;
 
-import jakarta.persistence.Entity;
 import jakarta.transaction.Transactional;
 import lk.ijse.gdse.helloshoesbackend.Enum.Status;
-import lk.ijse.gdse.helloshoesbackend.controller.User;
 import lk.ijse.gdse.helloshoesbackend.dto.EmployeeDTO;
 import lk.ijse.gdse.helloshoesbackend.entity.EmployeeEntity;
 import lk.ijse.gdse.helloshoesbackend.entity.UserEntity;
 import lk.ijse.gdse.helloshoesbackend.exception.NotFoundException;
-import lk.ijse.gdse.helloshoesbackend.repository.EmployeeServiceDao;
-import lk.ijse.gdse.helloshoesbackend.repository.UserServiceDao;
+import lk.ijse.gdse.helloshoesbackend.dao.EmployeeServiceDao;
+import lk.ijse.gdse.helloshoesbackend.dao.UserServiceDao;
 import lk.ijse.gdse.helloshoesbackend.service.EmployeeService;
 import lk.ijse.gdse.helloshoesbackend.util.ConversionData;
 import lombok.RequiredArgsConstructor;
@@ -97,13 +95,12 @@ public class EmployeeServiceIMPL implements EmployeeService{
         return true;
     }
 
-
-    private String getNextEmployeeCode(){
-        EmployeeEntity employeeEntity=employeeServiceDao.findByOrderByEmployeeCodeDesc();
-        return (employeeEntity !=null)
-                ? String.format("EMP-%03d",
+    private String getNextEmployeeCode() {
+        EmployeeEntity employeeEntity = employeeServiceDao.findByOrderByEmployeeCodeDesc();
+        return (employeeEntity != null)
+                ? String.format("Emp-%03d",
                 Integer.parseInt(employeeEntity.getEmployeeCode()
-                        .replace("EMP-", "")) +1)
-                : "EMP-001";
+                        .replace("Emp-", "")) + 1)
+                : "Emp-001";
     }
 }

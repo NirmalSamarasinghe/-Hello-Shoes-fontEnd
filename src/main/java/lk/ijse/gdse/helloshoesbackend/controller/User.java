@@ -7,6 +7,7 @@ import lk.ijse.gdse.helloshoesbackend.req_and_rest.secure.JWTAuthResponse;
 import lk.ijse.gdse.helloshoesbackend.service.AuthenticationService;
 import lk.ijse.gdse.helloshoesbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,13 +19,13 @@ public class User {
 
      private final AuthenticationService authenticationservice;
 
-     @PostMapping("/signUp")
+     @PostMapping(value = "/signUp",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<JWTAuthResponse> signUp(@RequestBody SignUp signUpReq) {
         return ResponseEntity.ok(authenticationservice.signup(signUpReq));
 
     }
 
-    @PostMapping("/signIn")
+    @PostMapping(value = "/signIn",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<JWTAuthResponse>singIn(@RequestBody SignIn singIn) {
          return ResponseEntity.ok(authenticationservice.signin(singIn));
     }

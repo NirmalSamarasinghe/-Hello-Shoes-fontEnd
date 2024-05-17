@@ -1,7 +1,7 @@
 package lk.ijse.gdse.helloshoesbackend.service.impl;
 
 import jakarta.transaction.Transactional;
-import lk.ijse.gdse.helloshoesbackend.repository.UserServiceDao;
+import lk.ijse.gdse.helloshoesbackend.dao.UserServiceDao;
 import lk.ijse.gdse.helloshoesbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

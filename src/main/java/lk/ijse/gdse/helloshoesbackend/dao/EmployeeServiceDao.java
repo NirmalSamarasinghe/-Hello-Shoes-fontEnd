@@ -1,4 +1,4 @@
-package lk.ijse.gdse.helloshoesbackend.repository;
+package lk.ijse.gdse.helloshoesbackend.dao;
 
 import lk.ijse.gdse.helloshoesbackend.entity.EmployeeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

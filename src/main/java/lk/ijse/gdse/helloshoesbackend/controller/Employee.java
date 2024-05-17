@@ -10,8 +10,6 @@ import lk.ijse.gdse.helloshoesbackend.service.EmployeeService;
 import lk.ijse.gdse.helloshoesbackend.util.UtilMatters;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.internal.Errors;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,12 +25,6 @@ public class Employee {
     @GetMapping("/healthCheck")
     public String healthCheckEmployee(){
         return "Employee Health Check";
-    }
-
-    private static int counter = 0;
-    public static String generateID() {
-        counter++;
-        return String.format("EMP-%03d", counter);
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
