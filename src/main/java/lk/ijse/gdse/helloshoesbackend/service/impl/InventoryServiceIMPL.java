@@ -1,4 +1,6 @@
 package lk.ijse.gdse.helloshoesbackend.service.impl;
 
-public class InventoryServiceIMPL {
+import lk.ijse.gdse.helloshoesbackend.service.InventoryService;
+
+public class InventoryServiceIMPL implements InventoryService {
 }

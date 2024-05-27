@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Entity
-//@Table(name = "Item")
+@Table(name = "Item")
 @Data
 public class ItemEntity {
     @Id
@@ -26,8 +26,8 @@ public class ItemEntity {
     @ManyToOne
     @JoinColumn(name = "varietyCode",nullable = false)
     private VarietyEntity varietyEntity;
-//
-//
-//    @OneToMany(mappedBy = "itemEntity",cascade = CascadeType.ALL)
-//    private List<StockEntity> stockEntities;
+
+
+    @OneToMany(mappedBy = "itemEntity",cascade = CascadeType.ALL)
+    private List<StockEntity> stockEntities;
 }
